@@ -22,10 +22,11 @@ RUN set -ex \
 	&& unzip /tmp/ghq_linux_amd64.zip \
 	&& mv /tmp/ghq /ghq/bin/ghq \
 	&& rm -rf /tmp/* \
-	&& apt-get -y --purge remove unzip
+	&& apt-get -y --purge remove unzip \
+	&& mkdir /ref
 
 ENV PATH /direnv/bin:/peco/bin:/ghq/bin:$PATH
-ENV GOPATH /data
+ENV GOPATH /ref:/data
 
 WORKDIR /data
 
