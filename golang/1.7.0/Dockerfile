@@ -1,4 +1,4 @@
-FROM golang:1.6.2
+FROM golang:1.7.0
 
 ENV DIRENV_VERSION 2.8.1
 ENV PECO_VERSION 0.3.6
@@ -22,10 +22,11 @@ RUN set -ex \
 	&& unzip /tmp/ghq_linux_amd64.zip \
 	&& mv /tmp/ghq /ghq/bin/ghq \
 	&& rm -rf /tmp/* \
-	&& apt-get -y --purge remove unzip
+	&& apt-get -y --purge remove unzip \
+	&& mkdir /ref
 
 ENV PATH /direnv/bin:/peco/bin:/ghq/bin:$PATH
-ENV GOPATH /data
+ENV GOPATH /ref:/data
 
 WORKDIR /data
 
