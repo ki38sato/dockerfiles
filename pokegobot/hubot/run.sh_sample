@@ -1,0 +1,13 @@
+#export PGO_LATITUDE=
+#export PGO_LONGITUDE=
+#export PGO_ALTITUDE=
+#export PGO_ALERT_POKEMONS=
+
+export PGO_USERNAME=
+export PGO_PASSWORD=
+export PGO_PROVIDER=
+export PGO_NOTIFY_ROOM=
+#####
+export HUBOT_SLACK_TOKEN=
+export HUBOT_SLACK_EXIT_ON_DISCONNECT=true
+/hubot/bin/hubot --adapter slack
