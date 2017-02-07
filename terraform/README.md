@@ -11,5 +11,5 @@ version combination history
 |0.8.5|0.8.5|2.10.0|0.4.7|0.7.4|
 
 ```
-docker build -t terraform:<version> base/ --build-arg TERRAFORM_VERSION=0.8.5 --build-arg DIRENV_VERSION=2.9.0 --build-arg PECO_VERSION=0.4.7 --build-arg GHQ_VERSION=0.7.4
+docker build -t terraform:<version> base/ --build-arg TERRAFORM_VERSION=0.8.5 --build-arg DIRENV_VERSION=2.10.0 --build-arg PECO_VERSION=0.4.7 --build-arg GHQ_VERSION=0.7.4
 ```
