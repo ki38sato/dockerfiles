@@ -1,0 +1,16 @@
+network.host: 0.0.0.0
+
+cluster.name: {{ var "ELASTICSEARCH_CLUSTER_NAME" | default "kibana-cluster" }}
+index.number_of_shards: 1
+index.number_of_replicas: 1
+
+## if run local with docker-compose, comment out below.
+
+{{ if var "ELASTICSEARCH_ENV_LOCAL" }}#{{ end }}discovery.type: ec2
+{{ if var "ELASTICSEARCH_ENV_LOCAL" }}#{{ end }}discovery.ec2.tag.esgroup: {{ var "ELASTICSEARCH_TAG_ESGROUP" | default "kibana_454" }}
+{{ if var "ELASTICSEARCH_ENV_LOCAL" }}#{{ end }}cloud.aws.region: ap-northeast-1
+{{ if var "ELASTICSEARCH_ENV_LOCAL" }}#{{ end }}cloud.node.auto_attributes: true
+{{ if var "ELASTICSEARCH_ENV_LOCAL" }}#{{ end }}cluster.routing.allocation.awareness.attributes: aws_availability_zone
+{{ if var "ELASTICSEARCH_ENV_LOCAL" }}#{{ end }}cluster.routing.allocation.awareness.force.aws_availability_zone.values: ap-northeast-1a,ap-northeast-1c
+
+{{ if var "ELASTICSEARCH_ENV_LOCAL" }}#{{ end }}network.publish_host: _ec2:privateIp_
