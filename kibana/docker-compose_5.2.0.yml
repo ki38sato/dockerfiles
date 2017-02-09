@@ -13,7 +13,7 @@ services:
       - ES_JAVA_OPTS=-Xmx1g -Xms1g
       - ELASTICSEARCH_ENV_LOCAL=true
   kibana:
-    image: kibana:5.2.0
+    image: kibana:c5.2.0
     ports:
       - "5601:5601"
     container_name: kibana
