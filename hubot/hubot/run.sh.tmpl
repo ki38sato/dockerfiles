@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+export HUBOT_NAME={{ var "HUBOT_NAME" | default "sushi" }}
+export HUBOT_ALIAS={{ var "HUBOT_ALIAS" | default "寿司" }}
+export HUBOT_SLACK_TOKEN={{ var "HUBOT_SLACK_TOKEN" | default "" }}
+export HUBOT_SLACK_EXIT_ON_DISCONNECT=true
+export PORT=3456
+bin/hubot --adapter slack
