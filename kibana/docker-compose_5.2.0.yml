@@ -1,19 +1,19 @@
 version: '2'
 services:
   elasticsearch:
-    image: elasticsearch:c5.2.0
+    build: ./elasticsearch/5.2.0
     ports:
       - "9200:9200"
       - "9300:9300"
     container_name: elasticsearch
     hostname: elasticsearch
     environment:
-      - ELASTICSEARCH_CLUSTER_NAME=kibana-cluster-test
-      - ELASTICSEARCH_TAG_ESGROUP=kibana_clone_454
+      - ELASTICSEARCH_CLUSTER_NAME=kibana-cluster
+      - ELASTICSEARCH_TAG_ESGROUP=kibana
       - ES_JAVA_OPTS=-Xmx1g -Xms1g
       - ELASTICSEARCH_ENV_LOCAL=true
   kibana:
-    image: kibana:c5.2.0
+    build: ./kibana/5.2.0
     ports:
       - "5601:5601"
     container_name: kibana
