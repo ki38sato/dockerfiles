@@ -1,0 +1,33 @@
+version: '2'
+services:
+  influxdb:
+    image: influxdb
+    ports:
+      - 8086:8086
+      - 8083:8083
+    volumes:
+      - $PWD/influxdb:/var/lib/influxdb
+    environment:
+      - ADMIN_USER="user"
+      - INFLUXDB_INIT_PWD="pass"
+      - PRE_CREATE_DB="telegraf" 
+  grafana:
+    image: grafana/grafana
+    links:
+      - influxdb
+    ports:
+      - 3003:3000
+    environment:
+      - GF_SERVER_ROOT_URL=http://localhost:3003
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+#  chronograf:
+#    image: chronograf
+#    ports:
+#      - 10000:10000
+  telegraf:
+    image: telegraf
+    volumes:
+      - $PWD/telegraf.conf:/etc/telegraf/telegraf.conf:ro
+    links:
+      - influxdb
+## docker run --rm telegraf -sample-config > telegraf.conf
