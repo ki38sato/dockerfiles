@@ -1,0 +1,53 @@
+version: '2'
+services:
+  api:
+    image: sstarcher/sensu
+    command: api
+    links:
+      - redis
+    ports:
+      - '4567:4567'
+  server:
+    image: sstarcher/sensu
+    command: server
+    links:
+      - redis
+      - api
+      - influxdb
+  client:
+    image: sstarcher/sensu
+    command: client
+    environment:
+      CLIENT_NAME: test
+      CLIENT_SUBSCRIPTIONS: all
+      CLIENT_ADDRESS: 127.0.0.1
+    links:
+      - redis
+    ports:
+      - '3030:3030'
+  uchiwa:
+    image: sstarcher/uchiwa
+    environment:
+      SENSU_C_NAME: test
+      SENSU_HOSTNAME: api
+    links:
+      - api:sensu
+    ports:
+      - '80:3000'
+  redis:
+    image: redis:3
+    ports:
+      - '6379:6379'
+  influxdb:
+    image: influxdb
+    ports:
+      - 8086:8086
+  grafana:
+    image: grafana/grafana
+    links:
+      - influxdb
+    ports:
+      - 8085:3000
+    environment:
+      - GF_SERVER_ROOT_URL=http://localhost:8085
+      - GF_SECURITY_ADMIN_PASSWORD=admin
